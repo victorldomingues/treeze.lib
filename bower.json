@@ -1,0 +1,17 @@
+{
+  "name": "treeze.lib",
+  "authors": [
+    "Victor Luiz Domingues <victor.luiz@treezebit.com>"
+  ],
+  "description": "treeze js library",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
