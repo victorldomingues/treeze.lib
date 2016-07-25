@@ -1,0 +1,27 @@
+{
+  "name": "treeze.lib",
+  "authors": [
+    "Victor Luiz Domingues <victor.luiz@treezebit.com>"
+  ],
+  "description": "treeze js library",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/victorldomingues/treeze.lib",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0fdbada6cd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0fdbada6cd8397f3eee35148072cc85344e1139c"
+  },
+  "_source": "https://github.com/victorldomingues/treeze.lib.git",
+  "_target": "*",
+  "_originalSource": "treeze.lib",
+  "_direct": true
+}

@@ -14,16 +14,4 @@
                 'delete': { method: 'DELETE', isArray: false, cache: false }
             });
     });
-    angularTzModule.factory('stockProducts', function ($resource) {
-        return $resource(url + "stocks/:id/products", {id: "@id"},
-            {
-                'get': { method: 'GET', isArray: false, cache: false }
-            });
-    });
-    angularTzModule.factory('stockGrid', function ($resource) {
-        return $resource(url + "stocks/:id/products-grid", {id: "@id"},
-            {
-                'get': { method: 'GET', isArray: false, cache: false }
-            });
-    });
 })();

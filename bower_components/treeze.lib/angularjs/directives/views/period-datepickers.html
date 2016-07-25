@@ -1,0 +1,22 @@
+<div class="col-md-3 col-xs-12 col-sm-3 none-hide-content" ng-class="filtroPersonalizado">
+    <div class="col-md-6 col-xs-12 col-sm-6 ng-scope" ng-controller="DateFromCtrl" style="max-height:26px; color: #000">
+        <div class="row">
+            <p class="input-group datepicker-custom">
+                <input style="color: #000" required="required" class="form-control btn btn-default ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-required ng-valid-date" ui-date="{date-format: 'dd/MM/yyy'}" uib-datepicker-popup="dd/MM/yyyy" ng-click="open($event)" ng-change="activeDateFilter(filtroGeral)" ng-model="filtroGeral.DateFrom" is-open="status.opened" min-date="'1993-06-01'" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Fechar" ng-switch="datepickerMode" date-format="dd/MM/yyyy" clear-text="Limpar" current-text="Hoje" type="text">
+                <span class="input-group-btn">
+                    <button style="color: #000" type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i> De  </button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12 col-sm-6 ng-scope " ng-controller="DateToCtrl" style="max-height:26px;color: #000">
+        <div class="row">
+            <p class="input-group datepicker-custom">
+                <input required="required" style="color: #000" class="form-control btn btn-default ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-required ng-valid-date" uib-datepicker-popup="dd/MM/yyyy" ng-click="open($event)" ng-change="activeDateFilter(filtroGeral)" ng-model="filtroGeral.DateTo" is-open="status.opened" min-date="filtroGegral.DateTo" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Fechar" ng-switch="datepickerMode" date-format="dd/MM/yyyy" clear-text="Limpar" current-text="Hoje" type="text">
+                <span class="input-group-btn">
+                    <button type="button" style="color: #000" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i> Até</button>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
