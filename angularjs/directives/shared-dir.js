@@ -754,6 +754,134 @@
             { id: '3', name: ' situacao 3' },
             { id: '4', name: ' situacao 4' },
         ];
+    })
+     .directive("inputDatePickerDir", function(){
+        return {
+            strict: 'AE',
+            scope: {
+                ngModel: '=',
+                placeholder: '=',
+                name: '=',
+                format: "="
+                //bindAttr: '='
+            },
+            replace: true,
+            controller: 'inputDatePickerCtrl',
+            template: '<p class="input-group">    <input type="text" class="form-control" name="{{name}}" uib-datepicker-popup="{{format}}" ng-model="ngModel" is-open="popup2.opened" datepicker-options="dateOptions" close-text="Close"  ng-required="true" placeholder="{{placeholder}}" /> <span class="input-group-btn">             <button type="button" style="border-top-right-radius: 4px; border-bottom-right-radius: 4px" class="form-control btn-info" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>           </span>         </p>',
+            link: function($scope, elem, attr, ctrl) {
+                // console.debug($scope);
+                //var textField = $('input', elem).attr('ng-model', 'myDirectiveVar');
+                // $compile(textField)($scope.$parent);
+            }
+        }
+    })
+    .controller("inputDatePickerCtrl", function($scope, $timeout){
+
+        $scope.makeMask = function (){
+            var d = $scope.format;
+            d = d.replace("dd", "99").replace("MM", "99").replace("yyyy","9999");
+            $scope.mask = d;
+        };
+        $scope.makeMask();
+        $scope.today = function() {
+            $scope[$scope.ngModel] = new Date();
+        };
+
+        // $scope[$scope.ngModel] = new Date($scope[$scope.ngModel]);
+        // $timeout(function () {
+        //     console.log($scope.format);
+        //     console.log($scope.ngModel);
+        // });
+        // $scope.today();
+
+        $scope.clear = function() {
+            $scope[$scope.ngModel] = null;
+        };
+
+        $scope.inlineOptions = {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        };
+
+        $scope.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        $scope.toggleMin = function() {
+            $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+            $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+        };
+
+        $scope.toggleMin();
+
+        $scope.open1 = function() {
+            $scope.popup1.opened = true;
+        };
+
+        $scope.open2 = function() {
+            $scope.popup2.opened = true;
+        };
+
+        $scope.setDate = function(year, month, day) {
+            $scope[$scope.model] = new Date(year, month, day);
+        };
+
+        $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        // $scope.format = $scope.formats[0];
+            $scope.altInputFormats = ['M!/d!/yyyy'];
+
+        $scope.popup1 = {
+            opened: false
+        };
+
+        $scope.popup2 = {
+            opened: false
+        };
+
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        var afterTomorrow = new Date();
+        afterTomorrow.setDate(tomorrow.getDate() + 1);
+        $scope.events = [
+            {
+                date: tomorrow,
+                status: 'full'
+            },
+            {
+                date: afterTomorrow,
+                status: 'partially'
+            }
+        ];
+
+        function getDayClass(data) {
+            var date = data.date,
+                mode = data.mode;
+            if (mode === 'day') {
+                var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+                for (var i = 0; i < $scope.events.length; i++) {
+                    var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+                    if (dayToCheck === currentDay) {
+                        return $scope.events[i].status;
+                    }
+                }
+            }
+
+            return '';
+        }
     });
 
 }());
