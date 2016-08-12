@@ -60,27 +60,20 @@
     }])
 
 
-
-
     angularTzModule.factory('accountPostFactory', ['$resource', function ($resource) {
-      return $resource(apiUrl + 'accounts/', {}, {
+      return $resource(apiUrl + 'accounts/', { companyId: '@companyId'}, {
           save: { method: 'POST', cache: false, isArray: false },
         });
     }])
 
-   
-
-  
     
     angularTzModule.factory('accountDeleteFactory', ['$resource', function ($resource) {
-      return $resource(apiUrl + "accounts/:id/", {id :'@id', reason: '@reason'}, {
+      return $resource(apiUrl + "accounts/:id/", {id :'@id'}, {
           remove: { method: 'DELETE' }
         });
     }])
     
-    
-    
-	
+    	
 })();
 
 

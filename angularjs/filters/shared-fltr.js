@@ -69,6 +69,35 @@
             return input.replace('.', ',');
         };
     });
+
+    angularTzModule.filter('cpfmask', function() {
+
+        return function(value){
+           return value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
+        }
+
+    });
+
+    angularTzModule.filter('cnpjmask', function() {
+
+        return function(value){
+
+           return value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+        }
+
+    });
+
+   angularTzModule.filter('removemask', function(){
+        return function(value){
+           return value.replace(/(\.|\/|\-)/g,"");
+        }
+     });
+
+   angularTzModule.filter('cepmask', function() {
+      return function(value){
+        return value.replace(/^(\d{2})(\d{3})(\d)/,"$1.$2-$3");
+      }
+   })
     
 
 })();
