@@ -66,5 +66,3 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
     get: {method: 'GET'}
   });
 }]);
-
-}])
