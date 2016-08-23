@@ -7,13 +7,14 @@ if(treeze_api_url == '')
 else {
   url = treeze_api_url + 'records/';
 }
-var header = localStorage.getItem('access_token');
+var headers = {};
+headers.Authorization =  localStorage.getItem('access_token');
 
 angularTzModule.factory('accountsResourceFactory',['$resource', function($resource){
   var options = {};
   var methodsOptions = {
-    get: {method: 'GET', headers: header },
-    save: {method: 'POST'}
+    get: {method: 'GET', headers: headers },
+    save: {method: 'POST', headers: headers}
   };
   return $resource(url + 'accounts', options, methodsOptions);
 }])
@@ -21,9 +22,9 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 .factory('accountIdResourceFactory' , ['$resource', function($resource){
   var options = {};
   var methodsOptions = {
-    get:  { method: 'GET'},
-    update: { method: 'PUT' },
-    delete: { method: 'DELETE'}
+    get:  { method: 'GET', headers: headers},
+    update: { method: 'PUT', headers: headers },
+    delete: { method: 'DELETE', headers: headers}
   };
   return $resource(url + 'accounts/:id', options, methodsOptions);
 }])
@@ -31,7 +32,7 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 .factory('findByEmailResourceFactory', ['$http', function($http){
   return function(params){
     var email = params.email;
-    var restResource = $http({"method": "GET", "url": url + 'accounts/find-by-email/' + email });
+    var restResource = $http({"method": "GET", "url": url + 'accounts/find-by-email/' + email, "headers": headers });
     return restResource;
   };
 }])
@@ -39,7 +40,7 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 .factory('findByUsernameResourceFactory', ['$http', function($http){
   return function(params){
     var username = params.username;
-    var restResource = $http({"method": "GET", "url": url + 'accounts/find-by-username/' + username});
+    var restResource = $http({"method": "GET", "url": url + 'accounts/find-by-username/' + username, "headers": headers });
     return restResource;
   };
 }])
@@ -48,8 +49,8 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 .factory('customFieldsResourceFactory', ['$resource', function($resource){
   var options = {};
   var methodOptions = {
-    save: { method: 'POST'},
-    get: {method: 'GET'}
+    save: { method: 'POST', "headers": headers},
+    get: {method: 'GET', "headers": headers}
   };
   return $resource(url + 'custom-fields', options, methodOptions);
 }])
@@ -57,9 +58,9 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 .factory('customFieldsIdResourceFactory', ['$resource', function($resource){
   var options = {};
   var methodOptions = {
-    get:  {method: 'GET'},
-    update: {method: 'PUT'},
-    delete: {method: 'DELETE'}
+    get:  {method: 'GET', "headers": headers},
+    update: {method: 'PUT', "headers": headers},
+    delete: {method: 'DELETE', "headers": headers}
   };
   return $resource(url + 'custom-fields/:id', options, methodOptions)
 }])
@@ -67,13 +68,13 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 .factory('findCustomFieldsResourceFactory', ['$resource', function($resource){
   var options = {};
   var methodOptions = {
-    get : {method: 'GET'}
+    get : {method: 'GET', "headers": headers}
   };
   return $resource(url + 'custom-fields/account-type/:accountType/section/:section', options, methodOptions)
 }])
 
 .factory('currentCountryGetFactory', ['$resource', function($resource){
   return $resource(url + 'systemsettings/country/:companyId', {}, {
-    get: {method: 'GET'}
+    get: {method: 'GET', "headers": headers}
   });
 }]);
