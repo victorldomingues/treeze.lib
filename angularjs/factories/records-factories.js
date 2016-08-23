@@ -31,38 +31,40 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
     var restResource = $http({"method": "GET", "url": url + 'accounts/find-by-username/' + username});
     return restResource;
   };
+}]);
 
-  .factory('customFieldsResourceFactory', ['$resource', function($resource){
-    var options = {};
-    var methodOptions = {
-      save: { method: 'POST'},
-      get: {method: 'GET'}
-    };
-    return $resource(url + 'custom-fields', options, methodOptions);
-  }])
 
-  .factory('customFieldsIdResourceFactory', ['$resource', function($resource){
-    var options = {};
-    var methodOptions = {
-      get:  {method: 'GET'},
-      update: {method: 'PUT'},
-      delete: {method: 'DELETE'}
-    };
-    return $resource(url + 'custom-fields/:id', options, methodOptions)
-  }])
+.factory('customFieldsResourceFactory', ['$resource', function($resource){
+  var options = {};
+  var methodOptions = {
+    save: { method: 'POST'},
+    get: {method: 'GET'}
+  };
+  return $resource(url + 'custom-fields', options, methodOptions);
+}]);
 
-  .factory('findCustomFieldsResourceFactory', ['$resource', function($resource){
-    var options = {};
-    var methodOptions = {
-      get : {method: 'GET'}
-    };
-    return $resource(url + 'custom-fields/account-type/:accountType/section/:section', options, methodOptions)
-  }])
+.factory('customFieldsIdResourceFactory', ['$resource', function($resource){
+  var options = {};
+  var methodOptions = {
+    get:  {method: 'GET'},
+    update: {method: 'PUT'},
+    delete: {method: 'DELETE'}
+  };
+  return $resource(url + 'custom-fields/:id', options, methodOptions)
+}])
 
-  .factory('currentCountryGetFactory', ['$resource', function($resource){
-    return $resource(apiUrl + 'systemsettings/country/:companyId', {}, {
-      get: {method: 'GET'}
-    });
-  }]);
+.factory('findCustomFieldsResourceFactory', ['$resource', function($resource){
+  var options = {};
+  var methodOptions = {
+    get : {method: 'GET'}
+  };
+  return $resource(url + 'custom-fields/account-type/:accountType/section/:section', options, methodOptions)
+}])
+
+.factory('currentCountryGetFactory', ['$resource', function($resource){
+  return $resource(apiUrl + 'systemsettings/country/:companyId', {}, {
+    get: {method: 'GET'}
+  });
+}]);
 
 }])
