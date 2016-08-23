@@ -1,7 +1,7 @@
 var url;
 if(treeze_api_url == '')
 {
-  url = 'http://192.168.99.100/api/records';
+  url = 'http://192.168.99.100/api/records/';
   //url = "http://localhost:3006/";
 }
 else {
