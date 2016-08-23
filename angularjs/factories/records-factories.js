@@ -7,11 +7,12 @@ if(treeze_api_url == '')
 else {
   url = treeze_api_url + 'records/';
 }
+var header = localStorage.getItem('access_token');
 
 angularTzModule.factory('accountsResourceFactory',['$resource', function($resource){
   var options = {};
   var methodsOptions = {
-    get: {method: 'GET'},
+    get: {method: 'GET', headers: header },
     save: {method: 'POST'}
   };
   return $resource(url + 'accounts', options, methodsOptions);
