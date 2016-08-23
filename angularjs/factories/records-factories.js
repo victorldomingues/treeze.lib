@@ -31,7 +31,7 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
     var restResource = $http({"method": "GET", "url": url + 'accounts/find-by-username/' + username});
     return restResource;
   };
-}]);
+}])
 
 
 .factory('customFieldsResourceFactory', ['$resource', function($resource){
