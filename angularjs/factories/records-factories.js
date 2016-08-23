@@ -8,7 +8,8 @@ else {
   url = treeze_api_url + 'records/';
 }
 var headers = {};
-headers.Authorization =  localStorage.getItem('access_token');
+headers.Authorization =  localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token');
+console.log('headers', headers);
 
 angularTzModule.factory('accountsResourceFactory',['$resource', function($resource){
   var options = {};
