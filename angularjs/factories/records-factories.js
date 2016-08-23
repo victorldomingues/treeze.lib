@@ -41,7 +41,7 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
     get: {method: 'GET'}
   };
   return $resource(url + 'custom-fields', options, methodOptions);
-}]);
+}])
 
 .factory('customFieldsIdResourceFactory', ['$resource', function($resource){
   var options = {};
