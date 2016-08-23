@@ -1,3 +1,13 @@
+var url;
+if(treeze_api_url == '')
+{
+  url = 'http://192.168.99.100/api/records';
+  //url = "http://localhost:3006/";
+}
+else {
+  url = treeze_api_url + 'records/';
+}
+
 angularTzModule.factory('accountsResourceFactory',['$resource', function($resource){
   var options = {};
   var methodsOptions = {
@@ -62,7 +72,7 @@ angularTzModule.factory('accountsResourceFactory',['$resource', function($resour
 }])
 
 .factory('currentCountryGetFactory', ['$resource', function($resource){
-  return $resource(apiUrl + 'systemsettings/country/:companyId', {}, {
+  return $resource(url + 'systemsettings/country/:companyId', {}, {
     get: {method: 'GET'}
   });
 }]);
